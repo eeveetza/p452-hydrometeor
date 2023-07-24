@@ -17,7 +17,7 @@ Note that several scalar equations in draft revised Recommendation [ITU-R P.452-
 
 Comparison between the vector form in `tl_p452_hydrometeor_vec.m` and the corrected scalar form in  `tl_p452_hydrometeor.m` is performed in `test_scalar_vs_vector_eqs.m` and those two versions result in numerically identical values.
 
-A version of the draft revised Recommendation ITU-R P.452-17 with the above corrections introduced in track changes (together with other improvements and comments) is available in document [./matlab/C0127-RevIS.docx](https://github.com/eeveetza/p452-hydrometeor/blob/main/matlab/C0127-RevIS.docx).
+A version of the draft revised Recommendation ITU-R P.452-17 with the above corrections introduced in track changes (together with other improvements and comments) is available in Section 5 of document [./matlab/C0127-RevIS.docx](https://github.com/eeveetza/p452-hydrometeor/blob/main/matlab/C0127-RevIS.docx).
 
 
 

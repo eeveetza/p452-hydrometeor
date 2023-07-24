@@ -1,0 +1,27 @@
+f = 12;  %GHz
+d = 50;  %km
+lat1 = -29.58;  %deg 
+lon1 = 30.57;   %deg
+lat2 = -29.57;  %deg
+lon2 = 30.57;   %deg
+h1loc = 8/1000; %km amsl
+h2loc = 8/1000; %km amls
+alpha1loc = 0    /180.0*pi;  %rad
+alpha2loc = 0    /180.0*pi;  %rad
+eps1loc = 1      /180.0*pi;   %rad
+eps2loc = 38.5   /180.0*pi;   %rad
+G1 = 10^(26.3/10);     %linear
+G2 = 10^(37.14/10);    %linear
+BW1 = 1.5    / 180.0*pi;      %rad       
+BW2 = 0.15 / 180.0*pi;      %rad
+p = 2; %horizontal
+q = 2; %horizontal
+press = 1013.25;
+wat_vap_dens = 20;
+Rm = 10;
+T = 20;
+M1 = 10;
+M2 = 10;
+M3 = 10;
+
+Lpq = tl_p452_hydrometeor(d, f, lat1, lon1, lat2, lon2, h1loc, h2loc, alpha1loc, alpha2loc, eps1loc, eps2loc, G1, G2, BW1, BW2, p, q, press, wat_vap_dens, Rm, T, M1, M2, M3)

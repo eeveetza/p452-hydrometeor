@@ -37,8 +37,9 @@ function [rA1, rA2, dB1, dB2, epsA1, epsA2, alphaA1, alphaA2, thetaA1, thetaA2, 
 % Flat Earth approximation (Section 5.2.1.1)
 eps1 = eps1loc;
 eps2 = eps2loc;
-alpha1 = alpha1loc;
-alpha2 = alpha2loc;
+
+alpha1 = atan2(y0, x0);
+alpha2 = atan2(y0, x0-d);
 
 % Distances rA1, rA2 from Station 1,2 to the integration element A(rho,phi,z), Equation (97)
 
@@ -46,14 +47,13 @@ DA1 = sqrt( 1 + (rho^2 + z^2 + 2*rho*d1p*cos(alpha1-phi)+ 2*h0*z) / (r1p^2) );
 rA1 = r1p*DA1;
 
 % ISSUE: Corrected the sign in front of the term 2*rho*d2p
-DA2 = sqrt(1 + (rho.^2 + z.^2 - 2*rho*d2p*cos(alpha2-phi) + 2*(h0-h2)*z) /(r2p.^2) );
+DA2 = sqrt(1 + (rho.^2 + z.^2 + 2*rho*d2p*cos(alpha2-phi) + 2*(h0-h2)*z) /(r2p.^2) );
 rA2 = r2p*DA2;
 
 % Equation (101)
 
 dB1 = sqrt(d1p^2 + rho^2 + 2*rho*d1p*cos(alpha1-phi));
-% ISSUE: Corrected the sign in front of the term 2*ho*d2p
-dB2 = sqrt(d2p^2 + rho^2 - 2*rho*d2p*cos(alpha2-phi));
+dB2 = sqrt(d2p^2 + rho^2 + 2*rho*d2p*cos(alpha2-phi));
 
 % Elevation angles of the position vectors RA1,RA2, Equation 100
 
@@ -67,7 +67,6 @@ alphaA2 = atan2( (y0 + rho*sin(phi))  , (x0-d + rho*cos(phi)) );
 
 % The scattering angle phis from Station 1 to the integration point A,
 % Equation (115)
-% ISSUE: Corrected the signs within the argument
 
 phis = acos( -rA1/rA2 + ( d* (x0+rho*cos(phi)) + h2*(h0+z) )/(rA1*rA2) );
 
@@ -75,29 +74,15 @@ phis = acos( -rA1/rA2 + ( d* (x0+rho*cos(phi)) + h2*(h0+z) )/(rA1*rA2) );
 scalar_nu_nu = ( dB1.^2 * rA2.^2 + (h0 - h2 + z) * ( h2*dB1.^2 - (h0+z)*(x0+rho*cos(phi))*d ))/ ...
             ( rA1*dB1*rA2*dB2 );
 
-% Equation (129)
-% ISSUE: Produces complex values of Lpq
-% scalar_nu_nu = (1 + 1/(dB1^2*(h0+z)^2) + dB2^2*rA2^2/((h0+z-h2)^2)) / (1 + (h0 + z -h2)^2); 
-
 % Equation (126)
-% ISSUE: Corrected for the missing multiplicative factor d
 scalar_h_nu = ( d* (h0 - h2 + z)* (y0 + rho * sin(phi) ) ) / (dB1*dB2*rA2);
-
-% Equation (127)
-% ISSUE: Produces complex values of Lpq
-%scalar_h_nu = (-(y0 + rho*sin(phi)) +(x0 + rho*cos(phi))/(dB2 * (h0 + z - h2)) )/(dB1*sqrt(1 + (h0 + z-h2).^2));
 
 % Equation 124
 x = x0 + rho*cos(phi);
 y = y0 + rho*sin(phi);
 h = h0 + z;
 
-% ISSUE with this one --> (124) seems to be incorrect
-%alpha_vi = atan2( ( (h0+z)*(x0+rho*cos(phi)) * d + h2 * dB1.^2  ) , (rA1*d*(y0+rho*sin(phi))) );
-
-% Equation (87) Fascicle
-alpha_vi = atan2( ( h*x*(x-d)+h*y^2 - dB1^2*(h-h2) ) ,(rA1*(-(x-d)*y + y*x)) );
-
+alpha_vi = atan2( ( h * x * (x-d) + h*y.^2 -dB1^2*(h-h2) ) , (rA1*d*y) );
 
 % Equation 125
 

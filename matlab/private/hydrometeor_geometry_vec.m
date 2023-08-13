@@ -1,6 +1,7 @@
 function [rA1, rA2, dB1, dB2, epsA1, epsA2, alphaA1, alphaA2, thetaA1, thetaA2, phis, alpha_vi, alpha_vs] = hydrometeor_geometry_vec(rho, phi, z, d, x0, y0, h0, h2, eps1loc, eps2loc, alpha1loc, alpha2loc)
 %construct_hydrometeor_geometry Constructs hydrometeor scatter geometry
-% as defined in Section 5.3.3
+% as defined in Section 5.3.3 and in the Facsicle with the equations in the
+% vector form
 %
 %     Input parameters:
 %     rho,phi,z  -   Cylindrical coordinates (km, rad, km)
@@ -37,8 +38,9 @@ function [rA1, rA2, dB1, dB2, epsA1, epsA2, alphaA1, alphaA2, thetaA1, thetaA2, 
 % Flat Earth approximation (Section 5.2.1.1)
 eps1 = eps1loc;
 eps2 = eps2loc;
-alpha1 = alpha1loc;
-alpha2 = alpha2loc;
+
+alpha1 = atan2(y0, x0);
+alpha2 = atan2(y0, x0-d);
 
 % Equation (98a) 
 RA1 = [x0 + rho*cos(phi); y0 + rho*sin(phi); h0 + z];

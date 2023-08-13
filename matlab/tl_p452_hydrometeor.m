@@ -19,7 +19,7 @@ function Lpq = tl_p452_hydrometeor(d, f, lat1, lon1, lat2, lon2, h1loc, h2loc, a
 %     eps2loc
 %     G1, G2        -   Gain for each antenna as a function of both antenna
 %                       boresight angle and antenna polarization (linear!)
-%     BW1, BW2      -   Antenna beam widths (either main beam or side lobes
+%     BW1, BW2      -   Antenna beam widths (either main beam or side lobes)
 %                       depending on the required coupling (rad)
 %     p, q          -   Polarization of Station 1 (p) and Station 2 (q)
 %                       antenna (1 = vertical, 2 = horizontal)

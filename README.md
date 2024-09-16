@@ -10,7 +10,27 @@ This is a development code. It contains two versions:
 
 Comparison between the scalar form in `tl_p452_hydrometeor.m` and the vector form in  `tl_p452_hydrometeor_vec.m` is performed in `test_scalar_vs_vector_eqs.m` providing numerically identical values.
 
+## Integrating ITU Digital Products
 
+This software uses ITU digital products that are integral part of Recommendations. These products must not be reproduced or distributed without explicit written permission from the ITU.
+
+### Setup Instructions
+
+1. **Download and extract the required maps** to `./private/maps`:
+   
+   - From ITU-R P.452-18:
+     - `DN50.TXT`
+
+   - From [ITU-R P.2001-4](https://www.itu.int/dms_pubrec/itu-r/rec/p/R-REC-P.2001-4-202109-S!!ZIP-E.zip):
+     - `h0.txt`
+
+2. **Run the script** `initiate_digital_maps.m` 
+
+### Notes
+
+- Ensure all files are placed in `./private/maps` before running the script.
+- The script processes the maps, which are critical for the software’s functionality.
+- The resulting `*.m` files to for retrieving and interpolating data from from the maps.are placed in the folder `./private`.
 
 ## Function Call
 
